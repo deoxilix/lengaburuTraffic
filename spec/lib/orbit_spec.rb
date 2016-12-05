@@ -27,10 +27,10 @@ describe Orbit do
     expect(@orbit1.traffic_speed).to eq 12
   end
 
-  # it "number of craters in orbit varies with variying weather" do
-  #   @sunny = Weather.new "sunny", 0.9
-  #   @rainy = Weather.new "rainy", 1.1
-  #   @windy = Weather.new "windy", 1
-  #   expect(@orbit1.weathering(@sunny)).to change (@orbit.craters).from(10).to(9)
-  # end
+  it "number of craters in orbit varies with variying weather" do
+    @sunny = Weather.new "sunny", 0.9
+    @rainy = Weather.new "rainy", 1.1
+    @windy = Weather.new "windy", 1
+    expect{@orbit1.weathering(@sunny)}.to change {@orbit1.craters}.from(10).to(9)
+  end
 end
