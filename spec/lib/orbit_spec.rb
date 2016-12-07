@@ -32,5 +32,6 @@ describe Orbit do
     @rainy = Weather.new "rainy", 1.1
     @windy = Weather.new "windy", 1
     expect{@orbit1.weathering(@sunny)}.to change {@orbit1.craters}.from(10).to(9)
+    expect{@orbit2.weathering(@rainy)}.to change {@orbit2.craters}.from(5).to(5.5)
   end
 end

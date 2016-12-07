@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe Vehicle do
   before :each do
-    @bike = Vehicle.new "bike", 10, 2
-    @tuktuk = Vehicle.new "tuktuk", 12, 1
-    @superCar = Vehicle.new "superCar", 20, 3
     @sunny = Weather.new "sunny", 0.9
     @rainy = Weather.new "rainy", 1.1
     @windy = Weather.new "windy", 1.0
+
+    @bike = Vehicle.new "bike", 10, 2, [@sunny, @windy]
+    @tuktuk = Vehicle.new "tuktuk", 12, 1, [@sunny, @rainy]
+    @superCar = Vehicle.new "superCar", 20, 3, [@sunny, @windy, @rainy]
   end
 
   it "There is a valid instance of Vehicle" do
@@ -28,15 +29,15 @@ describe Vehicle do
     expect(@superCar.top_speed).to eq 20
   end
 
-  it "vehicle can modify its top_speed, to match the traffic_speed of a given orbit" do
+  it "vehicle knows its modified speed, to match the traffic_speed of a given orbit" do
     @orbit1 = Orbit.new "orbit1", 10, 8
     @orbit1.traffic_speed = 8
     @orbit2 = Orbit.new "orbit2", 14, 10
     @orbit2.traffic_speed = 14
 
-    expect{@bike.modify_speed @orbit1}.to change {@bike.top_speed}.from(10).to(8)
-    expect{@tuktuk.modify_speed @orbit2}.to_not change {@tuktuk.top_speed}
-    expect{@superCar.modify_speed @orbit1}.to change {@superCar.top_speed}.from(20).to(8)
+    expect{@bike.modify_speed @orbit1}.to eq 8
+    expect{@tuktuk.modify_speed @orbit2}.to eq 12
+    expect{@superCar.modify_speed @orbit1}.to eq 8
   end
 
   it "Vehicle knows which weather its viable in" do
