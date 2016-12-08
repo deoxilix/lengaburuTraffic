@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "pry"
 
 describe Orbit do
   before :each do
@@ -28,10 +29,7 @@ describe Orbit do
   end
 
   it "number of craters in orbit varies with variying weather" do
-    @sunny = Weather.new "sunny", 0.9
-    @rainy = Weather.new "rainy", 1.1
-    @windy = Weather.new "windy", 1
-    expect{@orbit1.weathering(@sunny)}.to change {@orbit1.craters}.from(10).to(9)
-    expect{@orbit2.weathering(@rainy)}.to change {@orbit2.craters}.from(5).to(5.5)
+    expect{@orbit1.weathering(Weather::Types::SUNNY)}.to change {@orbit1.craters}.from(10).to(9)
+    expect{@orbit2.weathering(Weather::Types::RAINY)}.to change {@orbit2.craters}.from(5).to(5.5)
   end
 end
