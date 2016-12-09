@@ -9,7 +9,7 @@
   thereby solving the fundamental problem of LengaburuTraffic.
 
 =end
-require "pry"
+
 module LengaburuMaps
   Available_vehicles = []
   Available_orbits = []
