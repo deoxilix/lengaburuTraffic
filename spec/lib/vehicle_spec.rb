@@ -26,20 +26,33 @@ describe Vehicle do
     expect(@superCar.top_speed).to eq 20
   end
 
-  it "vehicle knows its modified speed, to match the traffic_speed of a given orbit" do
+  it "Vehicle knows which weather it is viable in" do
+    expect(@bike.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
+    expect(@tuktuk.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
+    expect(@superCar.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY, Weather::Types::WINDY
+  end
+
+  it "Vehicle knows its modified speed, to match the traffic_speed of a given orbit" do
     @orbit1 = Orbit.new "orbit1", 10, 8
     @orbit1.traffic_speed = 8
     @orbit2 = Orbit.new "orbit2", 14, 10
     @orbit2.traffic_speed = 14
 
-    expect(@bike.modify_speed @orbit1).to eq 8
-    expect(@tuktuk.modify_speed @orbit2).to eq 12
-    expect(@superCar.modify_speed @orbit1).to eq 8
+    expect(@bike.update_speed @orbit1).to eq 8
+    expect(@tuktuk.update_speed @orbit2).to eq 12
+    expect(@superCar.update_speed @orbit1).to eq 8
   end
 
-  it "Vehicle knows which weather its viable in" do
-    expect(@bike.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
-    expect(@tuktuk.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
-    expect(@superCar.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY, Weather::Types::WINDY
+  it "Vehicle can estimate_trip_time on a given Orbit" do
+    @orbit1 = Orbit.new "orbit1", 18, 20
+    @orbit1.traffic_speed = 12
+    @orbit1.weathering Weather::Types::SUNNY
+
+    @orbit2 = Orbit.new "orbit2", 20, 10
+    @orbit2.traffic_speed = 10
+    @orbit2.weathering Weather::Types::WINDY
+
+    expect(@bike.estimate_trip_time @orbit1).to eq 2.34
+    expect(@tuktuk.estimate_trip_time @orbit2).to eq 2.13
   end
 end

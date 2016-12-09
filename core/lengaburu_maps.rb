@@ -1,7 +1,20 @@
+=begin
+
+  LengaburuMaps is an abstraction majorly wrapping Orbits and Vehicles,
+
+  while being rooted into the Lengaburu_Traffic_Controller, updates itself with realtime information,
+
+  when regulated by the Lengaburu_Traffic_Controller it can deduce the Fastest_Vehicle_Orbit_Pairs,
+
+  thereby solving the fundamental problem of LengaburuTraffic.
+
+=end
+require "pry"
 module LengaburuMaps
   Available_vehicles = []
   Available_orbits = []
-  VehicleRoutePairs = []
+  FastestVehicleOrbitPair = Hash.new() {|h,k| h[k] = [] }
+
 
   Vehicle_Precedence = [
     "Bike",
@@ -9,10 +22,10 @@ module LengaburuMaps
     "SuperCar"
   ]
 
-  def LengaburuMaps.eval
-    calculate_time
-    evaluate_fastest_pair
-    fastest_preffered_pair
+  def LengaburuMaps.evaluate
+    record_vehicle_orbit_time
+    evaluate_preffered_pair( evaluate_fastest_pair )
+    display
   end
 
 =begin
@@ -44,40 +57,38 @@ module LengaburuMaps
 =begin
 
   Calculates time required for each Vehicle:Orbit pair
-  And saves it into a tree: for later evaluation_of_fastest_pair
+  And saves it into a hash: for later evaluation_of_fastest_pair
 
 =end
 
-  def self.calculate_time
+  def self.record_vehicle_orbit_time
+    FastestVehicleOrbitPair.clear
+
     Available_orbits.each{|orbit|
-      vehicle_time_pairs = []
       Available_vehicles.each{|vehicle|
-        vehicle_time_pairs << ( [] << vehicle.name << (orbit.distance / vehicle.modify_speed(orbit).to_f + orbit.craters * vehicle.crater_time) )
+        FastestVehicleOrbitPair[ vehicle.estimate_trip_time(orbit) ] << ([] << orbit.name << vehicle.name)
       }
-      VehicleRoutePairs << ( [] << orbit.name << vehicle_time_pairs )
     }
   end
 
 =begin
-
-  
-
 =end
 
   def self.evaluate_fastest_pair
-    [*0...VehicleRoutePairs.count].each do |p|
-      VehicleRoutePairs[p][1] = VehicleRoutePairs.dig(p, 1).min_by(&:last)
-      VehicleRoutePairs[p].flatten!
-    end
-
-    VehicleRoutePairs.sort_by!(&:last)
+    lowest_time = FastestVehicleOrbitPair.min.first
+    FastestVehicleOrbitPair.select!{|time| time == lowest_time }
+    lowest_time
   end
 
-  def self.fastest_preffered_pair
-    if VehicleRoutePairs.size > 1
-      VehicleRoutePairs.sort_by!{|combination| Vehicle_Precedence.index(combination.last) }
+  def self.evaluate_preffered_pair(lowest_time)
+    if FastestVehicleOrbitPair.first.last.size > 1
+      FastestVehicleOrbitPair[lowest_time].sort_by!{|combination| Vehicle_Precedence.index(combination.last) }
+      FastestVehicleOrbitPair[lowest_time] = FastestVehicleOrbitPair[lowest_time].shift
     end
+  end
 
-    "Vehicle #{VehicleRoutePairs.first[-2]} on #{VehicleRoutePairs.first.first}, ETA: #{VehicleRoutePairs.first.last} hours."
+  def self.display
+    time, pair = FastestVehicleOrbitPair.first
+    "Vehicle #{pair.last} on #{pair.first}, ETA: #{time} hours.\n"
   end
 end

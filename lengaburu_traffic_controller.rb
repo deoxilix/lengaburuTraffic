@@ -1,15 +1,15 @@
 Dir["./lib/**/*.rb"].each {|klass| require klass }
 Dir["./core/**/*.rb"].each {|klass| require klass }
 
-class LengaburuTraffic
+class LengaburuTrafficController
   extend LengaburuMaps
 
-  Vehicle_meta = [
+  @@vehicle_meta = [
     ["Bike", 10, 2, [Weather::Types::SUNNY, Weather::Types::WINDY]],
     ["TukTuk", 12, 1, [Weather::Types::SUNNY, Weather::Types::RAINY]],
     ["SuperCar", 20, 3, [Weather::Types::SUNNY, Weather::Types::WINDY, Weather::Types::RAINY]]
   ]
-  Orbit_meta = [
+  @@orbit_meta = [
     ["Orbit1", 18, 20],
     ["Orbit2", 20, 10]
   ]
@@ -32,23 +32,24 @@ class LengaburuTraffic
       LengaburuMaps.update_available_vehicles(current_weather)
       LengaburuMaps::Available_orbits.size.times{ LengaburuMaps.update_orbits(traffic_meta.shift.split(" "), current_weather) }
 
-      output.write LengaburuMaps.eval
+      output.write (LengaburuMaps.evaluate + "\n")
     end
   end
 
   def self.create_all_vehicles
     LengaburuMaps::Available_vehicles.clear
-    Vehicle_meta.each do |meta|
+    @@vehicle_meta.each do |meta|
       LengaburuMaps::Available_vehicles << Vehicle.new(*meta)
     end
-    LengaburuMaps::Available_vehicles
   end
 
   def self.create_all_orbits
-    Orbit_meta.each do |meta|
+    LengaburuMaps::Available_orbits.clear
+    @@orbit_meta.each do |meta|
       LengaburuMaps::Available_orbits << Orbit.new(*meta)
     end
   end
+
 end
 
-LengaburuTraffic.make_my_trip
+LengaburuTrafficController.make_my_trip

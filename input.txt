@@ -1,3 +1,7 @@
+Weather is Sunny
+Orbit1 traffic is 12 mm/hour
+Orbit2 traffic is 10 mm/hour
+
 Weather is Windy
-Orbit1 traffic is 14 mm/hour
-Orbit2 traffic is 20 mm/hour
+Orbit1 traffic speed is 14 megamiles/hour
+Orbit2 traffic speed is 20 megamiles/hour
