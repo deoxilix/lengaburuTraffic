@@ -83,8 +83,9 @@ module LengaburuMaps
   def self.evaluate_preffered_pair(lowest_time)
     if FastestVehicleOrbitPair.first.last.size > 1
       FastestVehicleOrbitPair[lowest_time].sort_by!{|combination| Vehicle_Precedence.index(combination.last) }
-      FastestVehicleOrbitPair[lowest_time] = FastestVehicleOrbitPair[lowest_time].shift
     end
+
+    FastestVehicleOrbitPair[lowest_time] = FastestVehicleOrbitPair[lowest_time].shift
   end
 
   def self.display

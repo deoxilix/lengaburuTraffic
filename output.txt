@@ -1,4 +1,4 @@
-Vehicle ["Orbit1", "TukTuk"] on ["Orbit1", "TukTuk"], ETA: 1.77 hours.
+Vehicle TukTuk on Orbit1, ETA: 1.77 hours.
 
-Vehicle ["Orbit2", "SuperCar"] on ["Orbit2", "SuperCar"], ETA: 1.5 hours.
+Vehicle SuperCar on Orbit2, ETA: 1.5 hours.
 
