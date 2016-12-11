@@ -1,5 +1,4 @@
 require 'spec_helper'
-require "pry"
 
 describe Weather do
   it "There should be a valid instance of Weather," do

@@ -10,6 +10,8 @@
 
 =end
 
+require "pry"
+
 module LengaburuMaps
   Available_vehicles = []
   Available_orbits = []
@@ -24,7 +26,7 @@ module LengaburuMaps
 
   def LengaburuMaps.evaluate
     record_vehicle_orbit_time
-    evaluate_preffered_pair( evaluate_fastest_pair )
+    evaluate_preferred_pair( evaluate_fastest_pair )
     display
   end
 
@@ -35,7 +37,7 @@ module LengaburuMaps
 
 =end
 
-  def LengaburuMaps.update_available_vehicles (current_weather)
+  def update_vehicle_availability (current_weather)
     Available_vehicles.select!{|vehicle| vehicle.viable_weathers.include? (current_weather) }
   end
 
@@ -47,9 +49,12 @@ module LengaburuMaps
 
 =end
 
-  def LengaburuMaps.update_orbits (orbit_meta, current_weather)
-    Available_orbits.find{|orbit| orbit.name == orbit_meta.first }.traffic_speed = orbit_meta[-2].to_i
-    Available_orbits.each{|orbit| orbit.weathering (current_weather) }
+  def update_orbit (orbit_meta, current_weather)
+    orbit = Available_orbits.find{|orbit| orbit.name == orbit_meta.first }
+
+    orbit.update_traffic_speed (orbit_meta[-2].to_i)
+    orbit.weathering (current_weather)
+    binding.pry
   end
 
   private
@@ -80,7 +85,7 @@ module LengaburuMaps
     lowest_time
   end
 
-  def self.evaluate_preffered_pair(lowest_time)
+  def self.evaluate_preferred_pair(lowest_time)
     if FastestVehicleOrbitPair.first.last.size > 1
       FastestVehicleOrbitPair[lowest_time].sort_by!{|combination| Vehicle_Precedence.index(combination.last) }
     end

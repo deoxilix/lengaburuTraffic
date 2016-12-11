@@ -1,5 +1,7 @@
-Dir["./lib/**/*.rb"].each {|klass| require klass }
+Dir["./models/**/*.rb"].each {|klass| require klass }
 Dir["./core/**/*.rb"].each {|klass| require klass }
+
+require "pry"
 
 class LengaburuTrafficController
   extend LengaburuMaps
@@ -29,13 +31,15 @@ class LengaburuTrafficController
 
       weather_meta = traffic_meta.shift.split(" ").last
       current_weather = Weather::Types::ALL.find{|weather| weather.name == weather_meta }
-      LengaburuMaps.update_available_vehicles(current_weather)
-      LengaburuMaps::Available_orbits.size.times{ LengaburuMaps.update_orbits(traffic_meta.shift.split(" "), current_weather) }
+      update_vehicle_availability(current_weather)
+
+      LengaburuMaps::Available_orbits.size.times{ update_orbit traffic_meta.shift.split(" ").first, current_weather }
 
       output.write (LengaburuMaps.evaluate + "\n")
     end
   end
 
+  private
   def self.create_all_vehicles
     LengaburuMaps::Available_vehicles.clear
     @@vehicle_meta.each do |meta|

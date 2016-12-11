@@ -10,4 +10,8 @@ class Orbit
   def weathering(weather)
     self.craters *= weather.crater_mod_index
   end
+
+  def update_traffic_speed (orbit_meta)
+    self.traffic_speed = orbit_meta
+  end
 end

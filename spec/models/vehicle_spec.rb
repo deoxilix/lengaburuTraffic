@@ -51,7 +51,7 @@ describe Vehicle do
     @orbit2.traffic_speed = 10
     @orbit2.weathering Weather::Types::WINDY
 
-    expect(@bike.estimate_trip_time @orbit1).to eq 2.34
-    expect(@tuktuk.estimate_trip_time @orbit2).to eq 2.13
+    expect(@bike.estimate_trip_time @orbit1).to eq 2.4
+    expect(@tuktuk.estimate_trip_time @orbit2).to eq 2.17
   end
 end

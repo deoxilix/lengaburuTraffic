@@ -1,5 +1,4 @@
 require 'spec_helper'
-require "pry"
 
 describe Orbit do
   before :each do
@@ -22,6 +21,10 @@ describe Orbit do
   it "orbit knows the number of craters in it" do
     expect(@orbit1.craters).to eq 10
   end
+
+  # it "orbit can update its traffic speed" do
+  #   expect{@orbit1.update_traffic_speed 12 }.to change from(nil).to(12)
+  # end
 
   it "orbit know its current traffic speed" do
     @orbit1.traffic_speed = 12
