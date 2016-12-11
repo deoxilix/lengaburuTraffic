@@ -25,7 +25,6 @@ class Vehicle
     orbit: The Orbit, it should update it's speed for.
 
 =end
-
   def update_speed (orbit)
     self.top_speed > orbit.traffic_speed ? orbit.traffic_speed : self.top_speed
   end
@@ -40,7 +39,6 @@ class Vehicle
     orbit: The Orbit, it should estimate travel time for.
 
 =end
-
   def estimate_trip_time (orbit)
     ( orbit.distance / self.update_speed(orbit).to_f + crater_delay(orbit) ).round 2
   end
@@ -55,7 +53,6 @@ class Vehicle
     orbit: The Orbit, it should deduce the crater_delay for
 
 =end
-
   def crater_delay (orbit)
     self.crater_time * orbit.craters
   end

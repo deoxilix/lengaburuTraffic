@@ -4,6 +4,10 @@ describe Orbit do
   before :each do
     @orbit1 = Orbit.new "orbit1", 8, 10
     @orbit2 = Orbit.new "orbit2", 12, 5
+
+    @sunny_weather = Weather.new("Sunny", 0.9)
+    @windy_weather = Weather.new("Windy", 1.0)
+    @rainy_weather = Weather.new("Rainy", 1.1)
   end
 
   it "There should be a valid instance of Orbit" do
@@ -32,7 +36,8 @@ describe Orbit do
   end
 
   it "number of craters in orbit varies with variying weather" do
-    expect{@orbit1.weathering(Weather::Types::SUNNY)}.to change {@orbit1.craters}.from(10).to(9)
-    expect{@orbit2.weathering(Weather::Types::RAINY)}.to change {@orbit2.craters}.from(5).to(5.5)
+
+    expect{@orbit1.weathering(@sunny_weather)}.to change {@orbit1.craters}.from(10).to(9)
+    expect{@orbit2.weathering(@rainy_weather)}.to change {@orbit2.craters}.from(5).to(5.5)
   end
 end

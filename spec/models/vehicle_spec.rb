@@ -2,9 +2,14 @@ require 'spec_helper'
 
 describe Vehicle do
   before :each do
-    @bike = Vehicle.new "bike", 10, 2, [Weather::Types::SUNNY, Weather::Types::WINDY]
-    @tuktuk = Vehicle.new "tuktuk", 12, 1, [Weather::Types::SUNNY, Weather::Types::WINDY]
-    @superCar = Vehicle.new "superCar", 20, 3, [Weather::Types::SUNNY, Weather::Types::WINDY, Weather::Types::WINDY]
+    @sunny_weather = Weather.new("Sunny", 0.9)
+    @windy_weather = Weather.new("Windy", 1.0)
+    @rainy_weather = Weather.new("Rainy", 1.1)
+
+
+    @bike = Vehicle.new "bike", 10, 2, [@sunny_weather, @windy_weather]
+    @tuktuk = Vehicle.new "tuktuk", 12, 1, [@sunny_weather, @windy_weather]
+    @superCar = Vehicle.new "superCar", 20, 3, [@sunny_weather, @windy_weather, @rainy_weather]
   end
 
   it "There is a valid instance of Vehicle" do
@@ -26,9 +31,9 @@ describe Vehicle do
   end
 
   it "Vehicle knows which weather it is viable in" do
-    expect(@bike.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
-    expect(@tuktuk.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY
-    expect(@superCar.viable_weathers).to include Weather::Types::SUNNY, Weather::Types::WINDY, Weather::Types::WINDY
+    expect(@bike.viable_weathers).to include @sunny_weather, @windy_weather
+    expect(@tuktuk.viable_weathers).to include @sunny_weather, @windy_weather
+    expect(@superCar.viable_weathers).to include @sunny_weather, @windy_weather, @rainy_weather
   end
 
   it "Vehicle knows its modified speed, to match the traffic_speed of a given orbit" do
@@ -45,11 +50,11 @@ describe Vehicle do
   it "Vehicle can estimate_trip_time on a given Orbit" do
     @orbit1 = Orbit.new "orbit1", 18, 20
     @orbit1.traffic_speed = 12
-    @orbit1.weathering Weather::Types::SUNNY
+    @orbit1.weathering @sunny_weather
 
     @orbit2 = Orbit.new "orbit2", 20, 10
     @orbit2.traffic_speed = 10
-    @orbit2.weathering Weather::Types::WINDY
+    @orbit2.weathering @windy_weather
 
     expect(@bike.estimate_trip_time @orbit1).to eq 2.4
     expect(@tuktuk.estimate_trip_time @orbit2).to eq 2.17
