@@ -42,7 +42,7 @@ class Vehicle
 =end
 
   def estimate_trip_time (orbit)
-    ( orbit.distance / self.update_speed(orbit).to_f + crater_delay(orbit) ).round 4
+    ( orbit.distance / self.update_speed(orbit).to_f + crater_delay(orbit) ).round 2
   end
 
 =begin

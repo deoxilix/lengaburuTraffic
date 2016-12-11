@@ -33,7 +33,7 @@ class LengaburuTrafficController
       current_weather = Weather::Types::ALL.find{|weather| weather.name == weather_meta }
       update_vehicle_availability(current_weather)
 
-      LengaburuMaps::Available_orbits.size.times{ update_orbit traffic_meta.shift.split(" ").first, current_weather }
+      LengaburuMaps::Available_orbits.size.times{ update_orbit traffic_meta.shift.split(" "), current_weather }
 
       output.write (LengaburuMaps.evaluate + "\n")
     end

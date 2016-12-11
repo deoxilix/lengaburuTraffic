@@ -50,19 +50,23 @@ module LengaburuMaps
 =end
 
   def update_orbit (orbit_meta, current_weather)
-    orbit = Available_orbits.find{|orbit| orbit.name == orbit_meta.first }
+    orbit_name = orbit_meta.first
+    orbit_traffic_speed = orbit_meta[-2].to_i
 
-    orbit.update_traffic_speed (orbit_meta[-2].to_i)
+    orbit = Available_orbits.find{|orbit| orbit.name == orbit_name }
+
+    orbit.update_traffic_speed (orbit_traffic_speed)
     orbit.weathering (current_weather)
-    binding.pry
   end
 
   private
 
 =begin
 
-  Calculates time required for each Vehicle:Orbit pair
-  And saves it into a hash: for later evaluation_of_fastest_pair
+  :record_vehicle_orbit_time
+
+    This is responsible for Calculating the time required for each Vehicle:Orbit pair.
+    And saves it into a hash: for later evaluation_of_fastest_pair
 
 =end
 
@@ -71,12 +75,18 @@ module LengaburuMaps
 
     Available_orbits.each{|orbit|
       Available_vehicles.each{|vehicle|
-        FastestVehicleOrbitPair[ vehicle.estimate_trip_time(orbit) ] << ([] << orbit.name << vehicle.name)
+        FastestVehicleOrbitPair[vehicle.estimate_trip_time(orbit)] << ([] << orbit.name << vehicle.name)
       }
     }
   end
 
 =begin
+
+  :evaluate_fastest_pair
+
+    This is responsible for evaluation of the VehicleOrbitPairs,
+    in order to figure out the FastestVehicleOrbitPair.
+
 =end
 
   def self.evaluate_fastest_pair
@@ -84,6 +94,14 @@ module LengaburuMaps
     FastestVehicleOrbitPair.select!{|time| time == lowest_time }
     lowest_time
   end
+
+=begin
+
+  :evaluate_preferred_pair
+
+    This is responsible for evaluation
+
+=end
 
   def self.evaluate_preferred_pair(lowest_time)
     if FastestVehicleOrbitPair.first.last.size > 1
