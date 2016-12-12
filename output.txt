@@ -1,4 +1,4 @@
-Vehicle TukTuk on Orbit1, ETA: 1.8 hours.
+Vehicle TukTuk on Orbit1, ETA: 1.8 hours approximately.
 
-Vehicle SuperCar on Orbit2, ETA: 1.5 hours.
+Vehicle SuperCar on Orbit2, ETA: 1.5 hours approximately.
 

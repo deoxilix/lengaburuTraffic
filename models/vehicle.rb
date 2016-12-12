@@ -1,7 +1,6 @@
 %w{
   weather
 }.each{|klass| require_relative klass }
-require "pry"
 
 class Vehicle
   attr_accessor :name, :top_speed, :crater_time, :viable_weathers

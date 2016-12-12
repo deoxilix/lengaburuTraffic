@@ -9,9 +9,6 @@
   thereby solving the fundamental problem of LengaburuTraffic.
 
 =end
-
-require "pry"
-
 module LengaburuMaps
 
   Vehicle_Precedence = [
@@ -20,7 +17,7 @@ module LengaburuMaps
     "SuperCar"
   ]
 
-  @fastest_vehicle_orbit_pairs = Hash.new() {|h,k| h[k] = [] }
+  @fastest_vehicle_orbit_pairs = Hash.new() {|hash, key| hash[key] = [] }
 
 
 
@@ -63,6 +60,8 @@ module LengaburuMaps
     orbit.weathering (current_weather)
   end
 
+
+
   private
 =begin
 
@@ -75,12 +74,11 @@ module LengaburuMaps
   def self.record_vehicle_orbit_time(available_vehicles, available_orbits)
     @fastest_vehicle_orbit_pairs.clear
 
-    available_orbits.each{|orbit|
-      available_vehicles.each{|vehicle|
+    available_orbits.each{ |orbit|
+      available_vehicles.each{ |vehicle|
         @fastest_vehicle_orbit_pairs[vehicle.estimate_trip_time(orbit)] << ([] << orbit.name << vehicle.name)
       }
     }
-    binding.pry
   end
 
 
@@ -119,12 +117,15 @@ module LengaburuMaps
 
 
 =begin
+  :display
 
+    This returns the conclusive data to the :LengaburuTrafficController,
 
+    for it to display.
 
 =end
   def self.display
     time, pair = @fastest_vehicle_orbit_pairs.first
-    "Vehicle #{pair.last} on #{pair.first}, ETA: #{time} hours.\n"
+    "Vehicle #{pair.last} on #{pair.first}, ETA: #{time} hours approximately.\n"
   end
 end
