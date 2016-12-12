@@ -1,6 +1,6 @@
 # [Lengaburu Traffic:](https://www.geektrust.in/coding-problem/backend/traffic)
 ![](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
-image: (c) [GeekTrust](www.geektrust.in)
+image: [GeekTrust](www.geektrust.in)
 - - -
 ## Problem Context
 King Shan wants to visit the suburb of Hallitharam, and has 2 possible orbits and 3 possible vehicles to chose from. The coding challenge is to determine which orbit and vehicle King Shan should take to reach Hallitharam the fastest.
@@ -20,12 +20,16 @@ Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
 + **Rainy :**  no change to number of craters. All vehicles can be used in this weather.
 
 #### [Sample Input :](https://github.com/deoxilix/LengaburuTraffic/input.txt)
+```
  Weather is Sunny
  Orbit1 traffic speed is 12 megamiles/hour
  Orbit2 traffic speed is 10 megamiles/hour
+```
 
 #### Sample Output :
+```
 Vehicle TukTuk on Orbit1
+```
 
 #### Usage :
 ```ruby
