@@ -26,9 +26,13 @@ Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
  Orbit2 traffic speed is 10 megamiles/hour
 ```
 
-#### Sample Output :
+#### Expected Output :
 ```
 Vehicle TukTuk on Orbit1
+```
+#### Test:
+```
+rspec spec/
 ```
 
 #### Usage :
