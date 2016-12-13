@@ -6,7 +6,7 @@
 
       it allows the :LengaburuMaps to estimate_trip_time, more precisely
 
-      by simulating the implications, expected with :current_weather.
+      by simulating the implications, expected with :current_weather of Lengaburu.
 
 =end
 class Weather

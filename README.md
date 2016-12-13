@@ -1,25 +1,28 @@
 # [Lengaburu Traffic:](https://www.geektrust.in/coding-problem/backend/traffic)
 ![Context](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
-via: [`GeekTrust`](www.geektrust.in)
+via: [`GeekTrust`](https://www.geektrust.in/)
 - - -
+
 ## Problem Context
 King Shan wants to visit the suburb of Hallitharam, and has 2 possible orbits and 3 possible vehicles to chose from. The coding challenge is to determine which orbit and vehicle King Shan should take to reach Hallitharam the fastest.
 
 Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
 
-#### [Orbit options:](https://github.com/deoxilix/LengaburuTraffic/models/orbit.rb)
+#### [Orbit options:](https://github.com/deoxilix/lengaburuTraffic/blob/master/models/orbit.rb)
 + **Orbit 1 :** 18 mega miles & 20 craters to cross
 + **Orbit 2 :** 20 mega miles & 10 craters to cross
-#### [Vehicle options:](https://github.com/deoxilix/LengaburuTraffic/models/vehicle.rb)
+
+#### [Vehicle options:](https://github.com/deoxilix/lengaburuTraffic/blob/master/models/vehicle.rb)
 + **Bike :** 10 megamiles/hour & takes 2 min to cross 1 crater
 + **TukTuk :** 12 mm/hour & takes 1 min to cross 1 crater
 + **SuperCar :** 20 mm/hour & takes 3 min to cross 1 crater
-#### [Weather options:](https://github.com/deoxilix/LengaburuTraffic/models/weather.rb)
+
+#### [Weather options:](https://github.com/deoxilix/lengaburuTraffic/blob/master/models/weather.rb)
 + **Sunny :** craters reduce by 10%. Car, bike and tuktuk can be used in this weather.
 + **Windy :** craters increase by 20%. Car and tuktuk can be used in this weather.
 + **Rainy :**  no change to number of craters. All vehicles can be used in this weather.
 
-#### [Sample Input :](https://github.com/deoxilix/LengaburuTraffic/input.txt)
+#### [Sample Input :](https://github.com/deoxilix/lengaburuTraffic/blob/master/input.txt)
 ```
  Weather is Sunny
  Orbit1 traffic speed is 12 megamiles/hour
@@ -30,7 +33,8 @@ Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
 ```
 Vehicle TukTuk on Orbit1
 ```
-#### Test:
+
+#### [Test:](https://github.com/deoxilix/lengaburuTraffic/tree/master/spec/models)
 ```
 rspec spec/
 ```
@@ -43,6 +47,7 @@ ruby lengaburu_traffic_controller.rb
 
 #### Dependencies :
 + [`rspec`](https://github.com/rspec/rspec)
+
 
 #### Environment :
 ```
