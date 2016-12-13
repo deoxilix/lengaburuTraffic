@@ -1,9 +1,11 @@
-# [Lengaburu Traffic:](https://www.geektrust.in/coding-problem/backend/traffic)
-![Context](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
+<!-- github-source: https://github.com/deoxilix/lengaburuTraffic -->
+# [Lengaburu Traffic: Solution](https://github.com/deoxilix/lengaburuTraffic)
+
+![ContextIMG](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
 via: [`GeekTrust`](https://www.geektrust.in/)
 - - -
 
-## Problem Context
+## [Problem Context](https://geektrust.in/coding-problem/backend/traffic)
 King Shan wants to visit the suburb of Hallitharam, and has 2 possible orbits and 3 possible vehicles to chose from. The coding challenge is to determine which orbit and vehicle King Shan should take to reach Hallitharam the fastest.
 
 Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
