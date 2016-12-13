@@ -1,3 +1,14 @@
+=begin
+
+    :Weather
+
+      is a rather simple class, when instantiated
+
+      it allows the :LengaburuMaps to estimate_trip_time, more precisely
+
+      by simulating the implications, expected with :current_weather.
+
+=end
 class Weather
   attr_accessor :name, :crater_mod_index
   def initialize(name, crater_mod_index)

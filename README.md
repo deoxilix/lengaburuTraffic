@@ -1,6 +1,6 @@
 # [Lengaburu Traffic:](https://www.geektrust.in/coding-problem/backend/traffic)
-![](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
-image: [GeekTrust](www.geektrust.in)
+![Context](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
+via: [`GeekTrust`](www.geektrust.in)
 - - -
 ## Problem Context
 King Shan wants to visit the suburb of Hallitharam, and has 2 possible orbits and 3 possible vehicles to chose from. The coding challenge is to determine which orbit and vehicle King Shan should take to reach Hallitharam the fastest.
@@ -46,5 +46,5 @@ ruby lengaburu_traffic_controller.rb
 
 #### Environment :
 ```
-    ruby - version: ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+ruby-version: ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
 ```

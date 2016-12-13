@@ -1,10 +1,10 @@
 =begin
 
-  LengaburuMaps is an abstraction majorly wrapping Orbits and Vehicles,
+  LengaburuMaps is an abstraction, majorly wrapping Orbits and Vehicles,
 
-  while being rooted into the Lengaburu_Traffic_Controller, updates itself with realtime information,
+  while being rooted into the :LengaburuTrafficController, updates the wrapped entities with realtime information,
 
-  when regulated by the Lengaburu_Traffic_Controller it can deduce the Fastest_Vehicle_Orbit_Pairs,
+  when regulated by the :LengaburuTrafficController it can deduce the Fastest_Vehicle_Orbit_Pairs,
 
   thereby solving the fundamental problem of LengaburuTraffic.
 
@@ -23,7 +23,6 @@ module LengaburuMaps
 
   def self.evaluate( available_vehicles, available_orbits )
     record_vehicle_orbit_time(available_vehicles, available_orbits)
-
     evaluate_preferred_pair( evaluate_fastest_pair )
     display
   end
@@ -125,7 +124,7 @@ module LengaburuMaps
 
 =end
   def self.display
-    time, pair = @fastest_vehicle_orbit_pairs.first
-    "Vehicle #{pair.last} on #{pair.first}, ETA: #{time} hours approximately.\n"
+    time, orbit, vehicle = @fastest_vehicle_orbit_pairs.first.flatten
+    "Vehicle #{vehicle} on #{orbit}, ETA: #{time} hours approximately.\n"
   end
 end
