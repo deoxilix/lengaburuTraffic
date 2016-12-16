@@ -21,8 +21,8 @@ Goal: to go from Silk Dorb to Hallitharam in the shortest time possible.
 
 #### [Weather options:](https://github.com/deoxilix/lengaburuTraffic/blob/master/models/weather.rb)
 + **Sunny :** craters reduce by 10%. Car, bike and tuktuk can be used in this weather.
-+ **Windy :** craters increase by 20%. Car and tuktuk can be used in this weather.
-+ **Rainy :**  no change to number of craters. All vehicles can be used in this weather.
++ **Windy :** no change to number of craters. All vehicles can be used in this weather. 
++ **Rainy :** craters increase by 20%. Car and tuktuk can be used in this weather.
 
 #### [Sample Input :](https://github.com/deoxilix/lengaburuTraffic/blob/master/input.txt)
 ```
