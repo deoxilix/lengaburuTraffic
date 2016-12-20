@@ -2,7 +2,7 @@
 
     :Weather
 
-      is a rather simple class, when instantiated
+      is a PORO, when instantiated
 
       it allows the :LengaburuMaps to estimate_trip_time, more precisely
 
