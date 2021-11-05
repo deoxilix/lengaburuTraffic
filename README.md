@@ -1,7 +1,7 @@
 <!-- github-source: https://github.com/deoxilix/lengaburuTraffic -->
 # [Lengaburu Traffic: Solution](https://github.com/deoxilix/lengaburuTraffic)
 
-![ContextIMG](https://www.geektrust.in/assets/images/problem-set3-1-popup.jpg)
+![ContextIMG](https://geektrust.sgp1.cdn.digitaloceanspaces.com/assets/images/problem-set3-1-popup.jpg)
 via: [`GeekTrust`](https://www.geektrust.in/)
 - - -
 
